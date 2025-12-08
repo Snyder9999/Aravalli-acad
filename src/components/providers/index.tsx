@@ -5,7 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import { Toaster } from '@/components/ui/sonner';
-import { DeleteConfirmationDialog } from '@/components/utils';
+import { DeleteConfirmationDialog } from '@/components/shared';
 import '@/lib/api/interceptors';
 
 import { QueryProvider } from './query-provider';

@@ -5,17 +5,19 @@ import React, { useState } from 'react';
 import { Button } from '@ui/button';
 import { Calendar } from '@ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@ui/popover';
-import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { format, parse } from 'date-fns';
+import { Calendar as CalendarIcon, X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+import { DateDisplayFormat } from '@/features/filters/types';
 
 interface DatePickerProps {
-  date?: string; // ISO date string
+  date?: string; // yyyy-MM-dd format
   onDateChange?: (date: string | undefined) => void;
   placeholder?: string;
   className?: string;
   disabled?: boolean;
+  displayFormat?: DateDisplayFormat;
 }
 
 const DatePicker = ({
@@ -24,16 +26,32 @@ const DatePicker = ({
   placeholder = 'Pick a date',
   className,
   disabled = false,
+  displayFormat = "PPP",
 }: DatePickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleDateChange = (selectedDate: Date | undefined) => {
-    const isoDate = selectedDate ? selectedDate.toISOString() : undefined;
-    onDateChange?.(isoDate);
+  // convert string (yyyy-MM-dd) into a valid Date
+  const parsedDate = date ? parse(date, 'yyyy-MM-dd', new Date()) : undefined;
+
+  const formatted = parsedDate
+    ? format(parsedDate, displayFormat)
+    : placeholder;
+
+  const handleSelect = (selected?: Date) => {
+    if (!selected) {
+      onDateChange?.(undefined);
+    } else {
+      const formatted = format(selected, 'yyyy-MM-dd');
+      onDateChange?.(formatted);
+    }
+
     setIsOpen(false);
   };
 
-  const dateObject = date ? new Date(date) : undefined;
+  const handleClear = () => {
+    onDateChange?.(undefined);
+    setIsOpen(false);
+  };
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -42,21 +60,30 @@ const DatePicker = ({
           variant="outline"
           className={cn(
             'w-full justify-start text-left font-normal',
-            !date && 'text-muted-foreground',
+            !parsedDate && 'text-muted-foreground',
             className
           )}
           disabled={disabled}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {dateObject ? format(dateObject, 'PPP') : placeholder}
+          {formatted}
         </Button>
       </PopoverTrigger>
+
       <PopoverContent className="w-auto p-0" align="start">
-        <Calendar
-          mode="single"
-          selected={dateObject}
-          onSelect={date => handleDateChange(date as Date)}
-        />
+        {/* clear button */}
+        {parsedDate && (
+          <div className="flex justify-end p-2">
+            <button
+              onClick={handleClear}
+              className="flex items-center text-xs text-red-500 hover:underline"
+            >
+              <X size={12} className="mr-1" /> Clear
+            </button>
+          </div>
+        )}
+
+        <Calendar mode="single" selected={parsedDate} onSelect={d => handleSelect(d as Date)} />
       </PopoverContent>
     </Popover>
   );

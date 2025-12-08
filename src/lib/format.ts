@@ -1,5 +1,9 @@
 import { format } from 'date-fns';
 
+
+
+
+
 export const formatRole = (role: string | undefined) => {
   switch (role) {
     case 'admin':
@@ -26,3 +30,10 @@ export const formatDate = (date?: string | number | Date, dateFormat?: string) =
   }
   return dateFormat ? format(parsedDate, dateFormat) : format(parsedDate, 'dd MMM yyyy, hh:mm a');
 };
+
+export const formatCurrency = (value: number, currency = 'INR') =>
+  new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: 0,
+  }).format(value);
