@@ -165,33 +165,42 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   button {
     @apply cursor-pointer;
   }
+
   .title {
     @apply text-3xl font-bold tracking-tight;
   }
+
   .description {
     @apply text-muted-foreground text-xs tracking-tight sm:text-sm;
   }
+
   .layout {
     @apply bg-background mx-auto max-w-7xl;
   }
 
   /* Hide scrollbar while keeping scroll functionality */
   .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
   }
 }

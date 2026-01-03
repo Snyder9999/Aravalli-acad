@@ -1,112 +1,73 @@
-# Next Auth Starter
+# Aravalli Academy Website
 
-A feature-based Next.js starter template focused on clean architecture, modern tooling, and a complete authentication flow.  
-Originally built for personal use by **Akinur Rahman**, now shared publicly in case it helps someone skip the boring setup phase.
+A modern, responsive, and feature-rich school website built for **Aravalli Academy**. This project serves as a comprehensive digital platform for the school, offering information to prospective students and parents, while also providing administrative tools for managing content.
 
-## Overview
+## Project Overview
 
-This is a production-ready frontend starter built with the App Router and structured around a scalable feature-based architecture.  
-It includes a full authentication flow, token refresh handling, Axios utilities, UI foundations, and the essential setup needed to start shipping features immediately.
+This application is designed to be the primary online presence for Aravalli Academy. It showcases the school's academic excellence, vibrant student life, and state-of-the-art facilities. It includes a dedicated **Admin Panel** to empower school staff to easily manage dynamic content like notices and photo galleries without needing technical expertise.
 
-## Features
+## Key Features
 
-- Feature-based folder architecture
-- Next.js App Router (v15)
-- Authentication (login, logout, refresh token)
-- Access-denied handling & protected routes
-- Zustand state with persisted auth
-- Axios instance with interceptors
-- Token refresh queueing and retry logic
-- TanStack Query integration
-- Shadcn UI with TailwindCSS v4
-- Global theming (light/dark/system)
-- Reusable UI components (input, loader, table, dialogs, etc.)
-- Helper utilities (cookies, debounce, API logging)
-- Zod validation for forms
-- Husky, lint-staged, and Prettier configured
+### 🌐 Public Website
+*   **Home Page:** Dynamic hero section, quick stats, admission enquiry form, and latest notices.
+*   **Academics:** Detailed curriculum information for all grade levels (Primary to Higher Secondary).
+*   **Student Life:** A visual journey through extracurriculars, sports, clubs, and events.
+*   **Gallery:** A filterable photo gallery showcasing life at the academy.
+*   **Contact:** Interactive contact page with a working enquiry form and location details.
+*   **Responsive Design:** Fully optimized for desktops, tablets, and mobile devices.
+
+### 🛡️ Admin Panel (CMS)
+*   **Dashboard:** specialized interface for administrators.
+*   **Notice Manager:** Create, edit, and delete school notices and announcements.
+*   **Gallery Manager:** Upload and categorize images for the public gallery.
+*   **Client-Side Persistence:** (Demo Mode) Changes are saved locally for demonstration purposes.
 
 ## Tech Stack
 
-- **Next.js 15**
-- **React 19**
-- **TypeScript**
-- **Zustand**
-- **TanStack Query**
-- **Axios**
-- **TailwindCSS 4**
-- **Shadcn UI**
-- **Zod**
-- **Sonner**
+*   **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+*   **Language:** TypeScript
+*   **Styling:** Tailwind CSS v4 & [Shadcn UI](https://ui.shadcn.com/)
+*   **State Management:** Zustand
+*   **Forms:** React Hook Form + Zod Validation
+*   **Icons:** Lucide React
 
-## Folder Structure
+## Getting Started
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/aravalli-academy.git
+    cd aravalli_acad
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    pnpm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    pnpm dev
+    ```
+
+4.  **Open locally:**
+    Navigate to [http://localhost:3000](http://localhost:3000) to view the site.
+    Navigate to [http://localhost:3000/admin](http://localhost:3000/admin) to access the Admin Panel.
+
+## Project Structure
 
 ```plaintext
 src/
-├─ app/
-│  ├─ (auth)/
-│  │  ├─ login/
-│  │  ├─ register/          # if exists
-│  │  └─ layout.tsx
-│  ├─ admin/
-│  ├─ access-denied/
-│  ├─ layout.tsx
-│  └─ page.tsx
-│
-├─ features/
-│  ├─ auth/
-│  │  ├─ components/
-│  │  ├─ hooks/
-│  │  ├─ pages/
-│  │  ├─ types/
-│  │  └─ validators/
-│  └─ dashboard/
-│
-├─ components/
-│  ├─ form-input/
-│  ├─ layout/
-│  ├─ loader/
-│  ├─ providers/
-│  ├─ table/
-│  ├─ ui/
-│  └─ utils/
-│
-├─ lib/
-│  ├─ api/
-│  │  ├─ api.ts
-│  │  ├─ api-call.ts
-│  │  ├─ interceptors.ts
-│  │  ├─ log-api-error.ts
-│  │  ├─ cookie-helper.ts
-│  │  ├─ debounce.ts
-│  │  └─ utils.ts
-│  └─ hooks/
-│
-├─ stores/
-│  ├─ auth.store.ts
-│  ├─ breadcrumb.store.ts
-│  └─ sidebar.store.ts
-│
-├─ constants/
-├─ types/
-├─ validators/
-└─ assets/
+├── app/                 # Next.js App Router pages
+│   ├── (public)/        # Public-facing routes (Home, About, Contact)
+│   ├── admin/           # Admin panel routes
+│   └── layout.tsx       # Root layout
+├── components/          # Reusable UI components
+│   ├── ui/              # Shadcn UI primitives
+│   └── layout/          # Header, Footer, etc.
+├── features/            # Feature-specific logic (gallery, notices)
+└── lib/                 # Utilities and constants
 ```
-
-## Notes
-
-- Frontend-only template that works with any backend providing access and refresh tokens.
-- Automatic token refreshing handled through Axios interceptors.
-- Authentication state persisted through Zustand.
-- Folder structure kept intentionally minimal but scalable for real production use.
-- Not a demo project. This template is meant to be a solid base for real applications.
-
-## Author
-
-**Akinur Rahman**  
-Frontend-focused Fullstack Developer  
-Originally created for personal use; shared publicly for anyone who wants a head start.
 
 ## License
 
-MIT
-
+This project is proprietary to Aravalli Academy.

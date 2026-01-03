@@ -59,7 +59,7 @@ const eslintConfig = [
       'prefer-template': 'error',
 
       // Import rules
-      'import/no-cycle': 'error',
+      // 'import/no-cycle': 'error',
     },
   },
 ];

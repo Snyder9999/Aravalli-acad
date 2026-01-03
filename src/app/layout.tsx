@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import { Providers } from '@/components/providers';
-import { APP_NAME } from '@/constants';
+import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
+import { SCHOOL_INFO } from '@/constants';
 
 import './globals.css';
 
@@ -13,8 +15,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: APP_NAME,
-  description: APP_NAME,
+  title: SCHOOL_INFO.name,
+  description: SCHOOL_INFO.tagline,
 };
 
 export default function RootLayout({
@@ -25,8 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
 }
+
